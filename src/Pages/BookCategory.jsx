@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 
-import Header from "../Assets/header";
-import Footer from "../Assets/footer";
 import { useParams } from "react-router-dom";
 
 import BookCard from "../components/BookCard.jsx";
@@ -30,19 +28,8 @@ export default function BookCategory() {
 
   return (
     <>
-      <div
-        className=""
-        style={{
-          margin: "auto",
-          width: "80%",
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        <p style={{ alignText: "center" }}>
-          {books.length == 0 ? "Loading..." : ""}
-        </p>
+      <div className="bookCards">
+        <p>{books.length == 0 ? "Loading..." : ""}</p>
         {books &&
           books.map((book) => {
             return <BookCard key={book.id} bookData={book} />;
