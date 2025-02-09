@@ -1,0 +1,46 @@
+.categoryDropdown {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 200px;
+  position: relative;
+  border-radius: 5px;
+  align-self: center;
+}
+
+.categoryDropdown .categoryOptions {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 5px;
+}
+
+.categoryDropdown .categoryOptions.visible {
+  opacity: 1;
+  visibility: visible;
+  border-radius: 0 0 5px 5px;
+}
+
+.categoryDropdown .toggleCategories,
+.categoryDropdown .categoryOptions button {
+  display: flex;
+  justify-content: space-between;
+  text-align: start;
+  padding: 5px 10px;
+
+  transition: background-color 0.05s ease;
+  cursor: pointer;
+}
+
+.categoryDropdown .categoryOptions button {
+  border-top: 0;
+  border-radius: 0;
+}
+
+.categoryDropdown .categoryOptions button.selected {
+  cursor: default;
+}
