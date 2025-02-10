@@ -1,42 +1,53 @@
 import { useState, useEffect } from "react";
-import FavouriteCards from "../components/FavouriteCards";
 
-export default function Favourites() {
-  const [favorites, setFavorites] = useState([]);
+import Header from "../Assets/header";
+import Footer from "../Assets/footer";
+import { useParams } from "react-router-dom";
+
+import BookCard from "../components/BookCard.jsx";
+
+export default function BookCategory() {
+  const { category } = useParams();
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    loadFavorites();
-  }, []);
+    setBooks([]);
+    const fetchBooks = async () => {
+      try {
+        const response = await fetch(
+          `https://gutendex.com/books?topic=${category.toLowerCase()}`
+        );
+        const data = await response.json();
+        console.log(data.results);
+        setBooks([...data.results]);
+      } catch (error) {
+        console.error("Error", error);
+      }
+    };
 
-  const getFromLocalStorage = (key) => {
-    const storedValue = localStorage.getItem(key);
-    return storedValue ? JSON.parse(storedValue) : [];
-  };
-
-  const loadFavorites = () => {
-    setFavorites(getFromLocalStorage("favorites"));
-  };
-
-  const removeFromFavorites = (bookId) => {
-    const updatedFavorites = favorites.filter((book) => book.id !== bookId);
-    setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-  };
+    fetchBooks();
+  }, [category]);
 
   return (
-    <div className="favDiv">
-      {favorites.length === 0 ? <p>No favorites yet!</p> : ""}
-      {favorites.map((book) => (
-        <div key={book.id}>
-          <FavouriteCards bookData={book} />
-          <button
-            className="remove"
-            onClick={() => removeFromFavorites(book.id)}
-          >
-            Remove from Favorites
-          </button>
-        </div>
-      ))}
-    </div>
+    <>
+      <div
+        className=""
+        style={{
+          margin: "auto",
+          width: "80%",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+      >
+        <p style={{ alignText: "center" }}>
+          {books.length == 0 ? "Loading..." : ""}
+        </p>
+        {books &&
+          books.map((book) => {
+            return <BookCard key={book.id} bookData={book} />;
+          })}
+      </div>
+    </>
   );
 }

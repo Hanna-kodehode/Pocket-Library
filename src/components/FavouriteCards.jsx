@@ -19,9 +19,6 @@ export default function FavouriteCards({ bookData, removeFromFavorites }) {
           Author: {bookData.authors?.map((author) => author.name).join(", ")}
         </p>
       </Link>
-      <button onClick={() => removeFromFavorites(bookData.id)}>
-        Remove from Favorites
-      </button>
     </>
   );
 }
