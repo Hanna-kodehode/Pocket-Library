@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 
-import Header from "../Assets/header";
-import Footer from "../Assets/footer";
 import { useParams } from "react-router-dom";
 
 import BookCard from "../components/BookCard.jsx";
