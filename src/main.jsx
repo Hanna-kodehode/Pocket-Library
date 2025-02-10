@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "/",
+        path: "/Pocket-Library/Home",
         element: <App />,
       },
       {
