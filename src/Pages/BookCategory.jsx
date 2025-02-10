@@ -1,40 +1,42 @@
 import { useState, useEffect } from "react";
+import FavouriteCards from "../components/FavouriteCards";
 
-import { useParams } from "react-router-dom";
-
-import BookCard from "../components/BookCard.jsx";
-
-export default function BookCategory() {
-  const { category } = useParams();
-  const [books, setBooks] = useState([]);
+export default function Favourites() {
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    setBooks([]);
-    const fetchBooks = async () => {
-      try {
-        const response = await fetch(
-          `https://gutendex.com/books?topic=${category.toLowerCase()}`
-        );
-        const data = await response.json();
-        console.log(data.results);
-        setBooks([...data.results]);
-      } catch (error) {
-        console.error("Error", error);
-      }
-    };
+    loadFavorites();
+  }, []);
 
-    fetchBooks();
-  }, [category]);
+  const getFromLocalStorage = (key) => {
+    const storedValue = localStorage.getItem(key);
+    return storedValue ? JSON.parse(storedValue) : [];
+  };
+
+  const loadFavorites = () => {
+    setFavorites(getFromLocalStorage("favorites"));
+  };
+
+  const removeFromFavorites = (bookId) => {
+    const updatedFavorites = favorites.filter((book) => book.id !== bookId);
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  };
 
   return (
-    <>
-      <div className="bookCards">
-        <p>{books.length == 0 ? "Loading..." : ""}</p>
-        {books &&
-          books.map((book) => {
-            return <BookCard key={book.id} bookData={book} />;
-          })}
-      </div>
-    </>
+    <div className="favDiv">
+      {favorites.length === 0 ? <p>No favorites yet!</p> : ""}
+      {favorites.map((book) => (
+        <div key={book.id}>
+          <FavouriteCards bookData={book} />
+          <button
+            className="remove"
+            onClick={() => removeFromFavorites(book.id)}
+          >
+            Remove from Favorites
+          </button>
+        </div>
+      ))}
+    </div>
   );
 }

@@ -14,16 +14,13 @@ export default function BookCard({ bookData }) {
 
   return (
     <>
-      <div
-        style={{
-          width: "15rem",
-          border: "2px dotted red",
-          height: "stretch",
-        }}
-      >
+      <div>
         <Link to={`/book/${bookData.id}`}>
           {imageURL && <img src={`${imageURL}`}></img>}
           <p>{bookData.title}</p>
+          <p>
+            Author: {bookData.authors?.map((author) => author.name).join(", ")}
+          </p>
         </Link>
       </div>
     </>
