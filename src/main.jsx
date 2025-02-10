@@ -12,7 +12,7 @@ import BookPage from "./components/Books/bookpage.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/Pocket-Library",
     element: <Layout />,
     children: [
       {
