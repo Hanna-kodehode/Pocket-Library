@@ -14,15 +14,10 @@ export default function BookCard({ bookData }) {
 
   return (
     <>
-      <div>
-        <Link to={`/book/${bookData.id}`}>
-          {imageURL && <img src={`${imageURL}`}></img>}
-          <p>{bookData.title}</p>
-          <p>
-            Author: {bookData.authors?.map((author) => author.name).join(", ")}
-          </p>
-        </Link>
-      </div>
+      <Link to={`/book/${bookData.id}`}>
+        {imageURL && <img src={`${imageURL}`}></img>}
+        <p>{bookData.title}</p>
+      </Link>
     </>
   );
 }

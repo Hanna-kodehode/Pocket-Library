@@ -28,10 +28,13 @@ export default function Favourites() {
       {favorites.length === 0 ? <p>No favorites yet!</p> : ""}
       {favorites.map((book) => (
         <div key={book.id}>
-          <FavouriteCards
-            bookData={book}
-            removeFromFavorites={removeFromFavorites}
-          />
+          <FavouriteCards bookData={book} />
+          <button
+            className="remove"
+            onClick={() => removeFromFavorites(book.id)}
+          >
+            Remove from Favorites
+          </button>
         </div>
       ))}
     </div>
