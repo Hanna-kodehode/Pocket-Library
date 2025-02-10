@@ -1,75 +1,23 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import BookCard from "../components/BookCard.jsx";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function BookCategory() {
-  const { category } = useParams();
-  const [books, setBooks] = useState([]);
-  const [favorites, setFavorites] = useState([]);
+export default function BookCard({ bookData }) {
+  // Eksempel på bruk av context inne i denne funksjonen, etter context er satt opp. Husk import av useContext og bookFavoritesContext
+  //const bookFavorites = useContext(bookFavoritesContext)
+  // bookContext.addFavorite(bookData.id)
+  const [imageURL, setImageURL] = useState("");
 
   useEffect(() => {
-    setBooks([]);
-    const fetchBooks = async () => {
-      try {
-        const response = await fetch(
-          `https://gutendex.com/books?topic=${category.toLowerCase()}`
-        );
-        const data = await response.json();
-        console.log(data.results);
-        setBooks([...data.results]);
-      } catch (error) {
-        console.error("Error", error);
-      }
-    };
-
-    fetchBooks();
-    loadFavorites(); // Load favorites when category changes
-  }, [category]);
-
-  // Helper functions for localStorage
-  const saveToLocalStorage = (key, value) => {
-    localStorage.setItem(key, JSON.stringify(value));
-  };
-
-  const getFromLocalStorage = (key) => {
-    const storedValue = localStorage.getItem(key);
-    return storedValue ? JSON.parse(storedValue) : [];
-  };
-
-  // Load favorites from local storage
-  const loadFavorites = () => {
-    setFavorites(getFromLocalStorage("favorites"));
-  };
-
-  // Add book to favorites
-  const addToFavorites = (book) => {
-    const updatedFavorites = [...favorites, book];
-    setFavorites(updatedFavorites);
-    saveToLocalStorage("favorites", updatedFavorites);
-  };
-
-  // Remove book from favorites
-  const removeFromFavorites = (bookId) => {
-    const updatedFavorites = favorites.filter((book) => book.id !== bookId);
-    setFavorites(updatedFavorites);
-    saveToLocalStorage("favorites", updatedFavorites);
-  };
+    console.log(bookData);
+    setImageURL(bookData.formats["image/jpeg"]);
+  }, []);
 
   return (
-    <div className="bookCards">
-      <p>{books.length === 0 ? "Loading..." : ""}</p>
-      {books &&
-        books.map((book) => (
-          <div key={book.id}>
-            <BookCard bookData={book} />
-            <button onClick={() => addToFavorites(book)}>
-              Add to Favorites
-            </button>
-            <button onClick={() => removeFromFavorites(book.id)}>
-              Remove from Favorites
-            </button>
-          </div>
-        ))}
-    </div>
+    <>
+      <Link to={`/book/${bookData.id}`}>
+        {imageURL && <img src={`${imageURL}`}></img>}
+        <p>{bookData.title}</p>
+      </Link>
+    </>
   );
 }

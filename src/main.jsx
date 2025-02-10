@@ -5,10 +5,10 @@ import "./index.css";
 
 //Pages
 import App from "./Pages/App.jsx";
-
 import Favourites from "./Pages/favourites.jsx";
 import BookCategory from "./Pages/BookCategory.jsx";
 import Layout from "./layout.jsx";
+import BookPage from "./components/Books/bookpage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,10 +23,10 @@ const router = createBrowserRouter([
         path: "/favourites",
         element: <Favourites />,
       },
-      /*{
-        path: "/books",
+      {
+        path: "/book/:id",
         element: <BookPage />,
-      },*/
+      },
       { path: "/category/:category", element: <BookCategory /> },
     ],
   },
