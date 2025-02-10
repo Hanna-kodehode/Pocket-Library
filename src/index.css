@@ -19,8 +19,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Montserrat", Arial, sans-serif;
-  border: none !important;
-  outline: none !important;
 }
 
 body,
@@ -131,6 +129,22 @@ button:hover {
   font-weight: 800;
   text-decoration-thickness: 3px;
   margin-top: auto;
+}
+
+.remove {
+  background-color: red;
+}
+
+.remove:hover {
+  background-color: #ff6565;
+}
+
+.add {
+  background-color: green;
+}
+
+.add:hover {
+  background-color: #41a441;
 }
 
 /* Footer */
