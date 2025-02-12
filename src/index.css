@@ -64,6 +64,14 @@ button:hover {
   cursor: pointer;
 }
 
+input {
+  pad: 10px 20px;
+  background-color: #a6c3ec;
+  border: #19212f;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
 /* Main content */
 .mainContainer {
   display: flex;
@@ -118,7 +126,8 @@ button:hover {
 }
 
 .bookCards,
-.favDiv {
+.favDiv,
+.searchStyle {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -126,7 +135,8 @@ button:hover {
 }
 
 .bookCards a,
-.favDiv a {
+.favDiv a,
+.searchStyle a {
   background-color: #a6c3ec;
   display: flex;
   flex-direction: column;
@@ -141,14 +151,16 @@ button:hover {
 }
 
 .bookCards img,
-.favDiv img {
+.favDiv img,
+.searchStyle img {
   width: 100%;
   height: 70%;
   object-fit: cover;
 }
 
 .bookCards p,
-.favDiv p {
+.favDiv p,
+.searchStyle p {
   color: #ffffff;
   text-decoration: underline;
   font-weight: 800;

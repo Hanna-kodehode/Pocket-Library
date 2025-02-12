@@ -1,13 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import SearchBar from "../components/SearchBar/searchBar.jsx"; // Correct the import path
+import SearchBar from "../components/SearchBar/searchBar.jsx";
 import DropDown from "../components/Dropdown/dropdown.jsx";
 
 export default function Header() {
   const navigate = useNavigate();
 
   const handleSearch = (query) => {
-    navigate(`/search?query=${query}`);
+    navigate(`/search/1?query=${query}`);
   };
 
   return (

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import Header from "../Assets/header";
-import Footer from "../Assets/footer";
+import { Link } from "react-router-dom";
 
 export default function BookSearch() {
   const { page } = useParams();
@@ -33,21 +32,27 @@ export default function BookSearch() {
 
   return (
     <>
-      <Header />
-      <div>
+      <div className="searchStyle">
         <h1>Search results for: "{query}"</h1>
-        <div>
-          {books.length > 0 ? (
-            books.map((book) => (
+
+        {books.length > 0 ? (
+          books.map((book) => {
+            const imageURL = book.formats["image/jpeg"];
+
+            return (
               <div key={book.id}>
-                <h2>{book.title}</h2>
-                <p>{book.authors.map((a) => a.name).join(", ")}</p>
+                <Link to={`/book/${book.id}`}>
+                  {imageURL && <img src={imageURL} alt={book.title} />}
+                  <h2>{book.title}</h2>
+                  <p>{book.authors.map((a) => a.name).join(", ")}</p>
+                </Link>
               </div>
-            ))
-          ) : (
-            <p>No books found :c</p>
-          )}
-        </div>
+            );
+          })
+        ) : (
+          <p>Loading...</p>
+        )}
+
         <div>
           <button
             onClick={() => goToPage(Number(page) - 1)}
@@ -63,7 +68,6 @@ export default function BookSearch() {
           </button>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
