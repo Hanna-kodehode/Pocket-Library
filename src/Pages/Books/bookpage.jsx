@@ -28,18 +28,3 @@ export default function BookPage() {
     </>
   );
 }
-
-// {
-//   "id": <number of Project Gutenberg ID>,
-//   "title": <string>,
-//   "subjects": <array of strings>,
-//   "authors": <array of Persons>,
-//   "summaries": <array of strings>,
-//   "translators": <array of Persons>,
-//   "bookshelves": <array of strings>,
-//   "languages": <array of strings>,
-//   "copyright": <boolean or null>,
-//   "media_type": <string>,
-//   "formats": <Format>,
-//   "download_count": <number>
-// }

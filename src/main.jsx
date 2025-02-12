@@ -9,31 +9,36 @@ import Favourites from "./Pages/favourites.jsx";
 import BookCategory from "./Pages/BookCategory.jsx";
 import Layout from "./layout.jsx";
 import BookPage from "./components/Books/bookpage.jsx";
+import ErrorBoundary from "./components/errorComponent.jsx";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        path: "/Home",
-        element: <App />,
-      },
-      {
-        path: "/favourites",
-        element: <Favourites />,
-      },
-      {
-        path: "/book/:id",
-        element: <BookPage />,
-      },
-      {
-        path: "/category/:category",
-        element: <BookCategory />,
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Layout />,
+      errorElement: <ErrorBoundary />,
+      children: [
+        {
+          path: "/",
+          element: <App />,
+        },
+        {
+          path: "/favourites",
+          element: <Favourites />,
+        },
+        {
+          path: "/book/:id",
+          element: <BookPage />,
+        },
+        {
+          path: "/category/:category",
+          element: <BookCategory />,
+        },
+      ],
+    },
+  ],
+  { basename: "/Pocket-Library" }
+);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
