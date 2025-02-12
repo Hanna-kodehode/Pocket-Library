@@ -10,6 +10,7 @@ import BookCategory from "./Pages/BookCategory.jsx";
 import Layout from "./layout.jsx";
 import BookPage from "./components/Books/bookpage.jsx";
 import ErrorBoundary from "./components/errorComponent.jsx";
+import BookSearch from "./Pages/bookSearch.jsx";
 
 const router = createBrowserRouter(
   [
@@ -33,6 +34,10 @@ const router = createBrowserRouter(
         {
           path: "/category/:category",
           element: <BookCategory />,
+        },
+        {
+          path: "/search/:page",
+          element: <BookSearch />,
         },
       ],
     },

@@ -5,7 +5,9 @@ export default function SearchBar({ onSearch }) {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    onSearch(query);
+    if (query) {
+      onSearch(query);
+    }
   };
 
   return (
