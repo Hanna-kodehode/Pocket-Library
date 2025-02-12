@@ -12,11 +12,11 @@ import BookPage from "./components/Books/bookpage.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/Pocket-Library",
+    path: "/",
     element: <Layout />,
     children: [
       {
-        path: "/Pocket-Library/Home",
+        path: "/Home",
         element: <App />,
       },
       {
@@ -27,7 +27,10 @@ const router = createBrowserRouter([
         path: "/book/:id",
         element: <BookPage />,
       },
-      { path: "/category/:category", element: <BookCategory /> },
+      {
+        path: "/category/:category",
+        element: <BookCategory />,
+      },
     ],
   },
 ]);
