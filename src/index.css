@@ -19,6 +19,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Montserrat", Arial, sans-serif;
+  color: #ffffff;
 }
 
 body,
@@ -97,6 +98,14 @@ input {
 .divTest img {
   max-height: 65vh;
   padding: 150x 0px;
+}
+.centerSearch {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
 }
 
 .bookDetail {

@@ -32,40 +32,42 @@ export default function BookSearch() {
 
   return (
     <>
-      <div className="searchStyle">
-        <h1>Search results for: "{query}"</h1>
+      <div className="centerSearch">
+        <div className="searchStyle">
+          <h1>Search results for: "{query}"</h1>
 
-        {books.length > 0 ? (
-          books.map((book) => {
-            const imageURL = book.formats["image/jpeg"];
+          {books.length > 0 ? (
+            books.map((book) => {
+              const imageURL = book.formats["image/jpeg"];
 
-            return (
-              <div key={book.id}>
-                <Link to={`/book/${book.id}`}>
-                  {imageURL && <img src={imageURL} alt={book.title} />}
-                  <h2>{book.title}</h2>
-                  <p>{book.authors.map((a) => a.name).join(", ")}</p>
-                </Link>
-              </div>
-            );
-          })
-        ) : (
-          <p>Loading...</p>
-        )}
+              return (
+                <div key={book.id}>
+                  <Link to={`/book/${book.id}`}>
+                    {imageURL && <img src={imageURL} alt={book.title} />}
+                    <h2>{book.title}</h2>
+                    <p>{book.authors.map((a) => a.name).join(", ")}</p>
+                  </Link>
+                </div>
+              );
+            })
+          ) : (
+            <p>Loading...</p>
+          )}
 
-        <div>
-          <button
-            onClick={() => goToPage(Number(page) - 1)}
-            disabled={!prevPage}
-          >
-            Previous
-          </button>
-          <button
-            onClick={() => goToPage(Number(page) + 1)}
-            disabled={!nextPage}
-          >
-            Next
-          </button>
+          <div>
+            <button
+              onClick={() => goToPage(Number(page) - 1)}
+              disabled={!prevPage}
+            >
+              Previous
+            </button>
+            <button
+              onClick={() => goToPage(Number(page) + 1)}
+              disabled={!nextPage}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </>
